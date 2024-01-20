@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { Link } from "react-router-dom";
-import { RootState } from "../redux/store";
 import {
   decrement,
   increment,
@@ -8,8 +7,8 @@ import {
 } from "../redux/counterSlice/counterSlice";
 
 const App = () => {
-  const { count } = useSelector((state: RootState) => state.counter);
-  const dispatch = useDispatch();
+  const { count } = useAppSelector((state) => state.counter);
+  const dispatch = useAppDispatch();
 
   return (
     <div>
