@@ -1,9 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../redux/store";
+import {
+  decrement,
+  increment,
+  incrementByAmount,
+} from "../redux/counterSlice/counterSlice";
 
 const App = () => {
   const { count } = useSelector((state: RootState) => state.counter);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -24,12 +30,30 @@ const App = () => {
       <hr className="border-l" />
 
       <div className="flex gap-5 justify-center mt-5 items-center ">
-        <button className="border border-green p-3 rounded-lg hover:bg-green-400">
+        <button
+          className="border border-green p-3 rounded-lg hover:bg-green-400"
+          onClick={() => {
+            dispatch(increment());
+          }}
+        >
           increment
         </button>
         <div>{count}</div>
-        <button className="border border-green p-3 rounded-lg hover:bg-red-400">
+        <button
+          className="border border-green p-3 rounded-lg hover:bg-red-400"
+          onClick={() => {
+            dispatch(decrement());
+          }}
+        >
           decrement
+        </button>
+        <button
+          className="border border-green p-3 rounded-lg hover:bg-blue-400"
+          onClick={() => {
+            dispatch(incrementByAmount(5));
+          }}
+        >
+          incrementByValue
         </button>
       </div>
     </div>
