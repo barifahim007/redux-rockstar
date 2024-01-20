@@ -1,9 +1,13 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { RootState } from "../redux/store";
 
 const App = () => {
+  const { count } = useSelector((state: RootState) => state.counter);
+
   return (
     <div>
-      <nav className="flex justify-evenly text-xl text-red-500 font-serif mt-4">
+      <nav className="flex justify-evenly text-xl text-red-500 font-serif my-5">
         <ul>
           <li>REDux Rockstar</li>
         </ul>
@@ -16,8 +20,17 @@ const App = () => {
           <Link to={"/about"}>about</Link>
         </ul>
       </nav>
-      <div className="bg-red-600 shadow-md mt-4">
-        <hr className="border-l" />
+
+      <hr className="border-l" />
+
+      <div className="flex gap-5 justify-center mt-5 items-center ">
+        <button className="border border-green p-3 rounded-lg hover:bg-green-400">
+          increment
+        </button>
+        <div>{count}</div>
+        <button className="border border-green p-3 rounded-lg hover:bg-red-400">
+          decrement
+        </button>
       </div>
     </div>
   );
